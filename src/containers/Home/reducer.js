@@ -2,23 +2,33 @@ import { createSlice } from "@reduxjs/toolkit";
 import TRANSCRIPT_JSON from "../../assets/audios/transcript.json";
 
 const configSlice = createSlice({
-  name: "home",
+  name: 'audio',
   initialState: {
-    audioControlBar: {
-      playing: false,
-    },
-    transcript: TRANSCRIPT_JSON
+    transcript: TRANSCRIPT_JSON,
+    currentTime: 0,
+    duration: 0,
+    seekTime: 0,
+    isPlaying: false
   },
   reducers: {
-    togglePlayPause(state, action) {
-      state.audioControlBar.playing = !state.audioControlBar.playing;
+    updateAudioPlayingStatus(state, action) {
+      state.isPlaying = action.payload;
     },
+    updateCurrentTime(state, action) {
+      state.currentTime = action.payload;
+    },
+    updateAudioDuration(state, action) {
+      state.duration = action.payload;
+    },
+    setSeekTime(state, action) {
+      state.seekTime = action.payload;
+    }
   },
 });
 
 // Extract the action creators object and the reducer
 const { actions, reducer } = configSlice;
 // Extract and export each action creator by name
-export const { togglePlayPause } = actions;
+export const { updateCurrentTime, updateAudioDuration, setSeekTime, updateAudioPlayingStatus } = actions;
 // Export the reducer, either as a default or named export
 export default reducer;
