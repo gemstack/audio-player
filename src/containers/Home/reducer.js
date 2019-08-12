@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import TRANSCRIPT_JSON from "../../assets/audios/transcript.json";
 
 const configSlice = createSlice({
   name: "home",
@@ -6,6 +7,7 @@ const configSlice = createSlice({
     audioControlBar: {
       playing: false,
     },
+    transcript: TRANSCRIPT_JSON
   },
   reducers: {
     togglePlayPause(state, action) {
