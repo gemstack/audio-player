@@ -1,10 +1,10 @@
-import { makeStyles, Button } from "@material-ui/core";
+import { Button, makeStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
 import pauseButton from "../../assets/images/pause-circle-fill.svg";
 import playButton from "../../assets/images/play-circle-fill.svg";
-import share from "../../assets/images/share.png";
 import rotateLeft from "../../assets/images/rotate-left.png";
+import share from "../../assets/images/share.png";
 
 const useStyles = makeStyles({
   list: {
@@ -108,7 +108,6 @@ const AudioPlayer = ({
   const onLoadedData = (e) => {
     updateAudioDuration(e.target.duration);
   };
-
 
   return (
     <React.Fragment>

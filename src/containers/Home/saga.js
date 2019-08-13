@@ -1,4 +1,3 @@
-function* homeSaga() {
-}
+function* homeSaga() {}
 
 export default homeSaga;
