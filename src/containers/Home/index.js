@@ -17,7 +17,6 @@ const Home = ({ transcript, currentTime, setSeekTime, ...props }) => {
     <Box>
       <AudioControlBar
         setSeekTime={setSeekTime}
-        currentTime={currentTime}
         {...props}
       />
       <TranscriptContainer
