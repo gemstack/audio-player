@@ -1,5 +1,5 @@
+import { fade, InputBase, makeStyles } from "@material-ui/core";
 import React from "react";
-import { makeStyles, fade, InputBase } from "@material-ui/core";
 import searchIcon from "../../../assets/images/searchicon.svg";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,12 +37,6 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
   },
 }));
 
@@ -64,5 +58,7 @@ const SearchBar = () => {
     </div>
   );
 };
+
+SearchBar.prototype = {};
 
 export default SearchBar;
