@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 
 const useStyles = makeStyles((theme) => ({
   transcript: {
-    marginTop: "100px",
+    padding: "94px 15px 0",
   },
 }));
 
@@ -14,12 +14,15 @@ export const dialogSpeakers = {
   PERSON_TWO: 1,
 };
 
-const TranscriptContainer = ({ transcript }) => {
+const TranscriptContainer = ({ transcript, currentTime, setSeekTime }) => {
   const classes = useStyles();
   const transcriptSection = transcript.word_timings.map(
     (sentenceWords, index) => (
       <PersonDialog
+        key={index}
         sentenceWords={sentenceWords}
+        setSeekTime={setSeekTime}
+        currentTime={currentTime}
         dialogSpeaker={
           index % 2 === 0
             ? dialogSpeakers.PERSON_ONE
