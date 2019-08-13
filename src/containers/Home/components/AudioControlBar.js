@@ -23,7 +23,6 @@ const AudioControlBar = (props) => {
 };
 
 AudioControlBar.prototype = {
-  currentTime: PropTypes.number.isRequired,
   seekTime: PropTypes.number.isRequired,
   updateCurrentTime: PropTypes.func.isRequired,
   updateAudioDuration: PropTypes.func.isRequired,
