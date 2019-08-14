@@ -21,6 +21,14 @@ class AudioControlBar extends React.Component {
     this.audioPlayerRef = ref;
   };
 
+  audioEnded = () => {
+    this.props.togglePlayPause();
+  }
+
+  componentDidMount = () => {
+    this.audioPlayerRef.onended = this.audioEnded;
+  }
+
   render() {
     return (
       <AppBar color={"secondary"}>
