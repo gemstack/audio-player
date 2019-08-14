@@ -2,28 +2,18 @@ import { AppBar, Toolbar } from "@material-ui/core";
 import React from "react";
 import recordingFile from "../../../assets/audios/recording.wav";
 import AudioControls from "./AudioControls";
+import { connect } from "react-redux";
+import { togglePlayPause } from "../reducer";
 
 class AudioControlBar extends React.Component {
-  state = {
-    playing: false,
-  };
   audioPlayerRef = React.createRef();
 
-  play = () => {
-    this.setState((prevState) => ({ ...prevState, playing: true }));
-    this.audioPlayerRef.play();
-  };
-
-  pause = () => {
-    this.setState((prevState) => ({ ...prevState, playing: false }));
-    this.audioPlayerRef.pause();
-  };
-
   togglePlayPause = () => {
-    if (this.state.playing) {
-      this.pause();
+    this.props.togglePlayPause();
+    if (this.props.playing) {
+      this.audioPlayerRef.pause();
     } else {
-      this.play();
+      this.audioPlayerRef.play();
     }
   };
 
@@ -36,7 +26,7 @@ class AudioControlBar extends React.Component {
       <AppBar color={"secondary"}>
         <Toolbar>
           <AudioControls
-            playing={this.state.playing}
+            playing={this.props.playing}
             recordingFile={recordingFile}
             onTogglePlayPause={this.togglePlayPause}
             setAudioPlayerRef={this.setAudioPlayerRef}
@@ -47,4 +37,10 @@ class AudioControlBar extends React.Component {
   }
 }
 
-export default AudioControlBar;
+const mapStateToProps = (state) => ({
+  playing: state.home.audioControlBar.playing,
+});
+
+const mapDispatchToProps = { togglePlayPause };
+
+export default connect(mapStateToProps, mapDispatchToProps)(AudioControlBar);
