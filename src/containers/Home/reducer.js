@@ -7,8 +7,8 @@ const configSlice = createSlice({
 });
 
 // Extract the action creators object and the reducer
-const { actions, reducer } = configSlice;
+const { actions, reducer: homeReducer } = configSlice;
 // Extract and export each action creator by name
 export const {} = actions;
 // Export the reducer, either as a default or named export
-export default reducer;
+export default homeReducer;
