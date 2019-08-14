@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import rotateLeft from "../../../assets/images/rotate-left.png";
 import { makeStyles } from "@material-ui/core";
 import playButton from "../../../assets/images/play-circle-fill.png";
@@ -22,9 +23,9 @@ const useStyles = makeStyles({
 });
 
 const AudioControls = ({
+  playing,
   recordingFile,
   setAudioPlayerRef,
-  playing,
   onTogglePlayPause,
 }) => {
   const classes = useStyles();
@@ -41,9 +42,16 @@ const AudioControls = ({
         />
       </div>
       <img src={rotateLeft} alt="next" className={classes.nextButton} />
-      <audio src={recordingFile} ref={(ref) => setAudioPlayerRef(ref)} />
+      <audio src={recordingFile} ref={setAudioPlayerRef} />
     </React.Fragment>
   );
+};
+
+AudioControls.propTypes = {
+  playing: PropTypes.bool.isRequired,
+  recordingFile: PropTypes.string.isRequired,
+  setAudioPlayerRef: PropTypes.func.isRequired,
+  onTogglePlayPause: PropTypes.func.isRequired,
 };
 
 export default AudioControls;

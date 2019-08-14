@@ -38,7 +38,6 @@ class AudioControlBar extends React.Component {
           <AudioControls
             playing={this.state.playing}
             recordingFile={recordingFile}
-            audioPlayerRef={this.audioPlayerRef}
             onTogglePlayPause={this.togglePlayPause}
             setAudioPlayerRef={this.setAudioPlayerRef}
           />
