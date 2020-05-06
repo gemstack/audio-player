@@ -1,6 +1,6 @@
-import { combineReducers } from "redux";
-import home from "../containers/Home/reducer";
+import { combineReducers } from 'redux';
+import audio from '../containers/Home/reducer';
 
 export default combineReducers({
-  home,
+  audio,
 });
