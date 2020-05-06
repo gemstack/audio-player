@@ -4,12 +4,11 @@ const configSlice = createSlice({
   name: "home",
   initialState: {
     audioControlBar: {
-      playing: true,
+      playing: false,
     },
   },
   reducers: {
     togglePlayPause(state, action) {
-      console.log("Hello Wrold");
       state.audioControlBar.playing = !state.audioControlBar.playing;
     },
   },
