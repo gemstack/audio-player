@@ -1,13 +1,15 @@
 import React from "react";
-import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles, fade, InputBase } from "@material-ui/core";
+import searchIcon from "../../../assets/images/searchicon.svg";
 
 const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
-    border: "1px solid black",
+    border: "1px solid #DFE3E9",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
+    height: "34px",
+    width: "370px !important",
     "&:hover": {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
@@ -49,10 +51,10 @@ const SearchBar = () => {
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
-        <SearchIcon />
+        <img src={searchIcon} alt={"search"} />
       </div>
       <InputBase
-        placeholder="Search call transcript"
+        placeholder="Search Call Transcript"
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
