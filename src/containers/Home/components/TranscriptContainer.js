@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
 import React from "react";
+import { PROPTYPE_TRANSCRIPT } from "../../../constants";
 import PersonDialog from "./PersonDialog";
 import SearchBar from "./SearchBar";
 
@@ -38,6 +40,12 @@ const TranscriptContainer = ({ transcript, currentTime, setSeekTime }) => {
       <div>{transcriptSection}</div>
     </div>
   );
+};
+
+TranscriptContainer.prototype = {
+  transcript: PROPTYPE_TRANSCRIPT.isRequired,
+  currentTime: PropTypes.number.isRequired,
+  setSeekTime: PropTypes.func.isRequired,
 };
 
 export default TranscriptContainer;

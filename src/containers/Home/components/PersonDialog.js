@@ -1,6 +1,8 @@
-import React from "react";
 import { makeStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
+import React from "react";
 import { dialogSpeakers } from "./TranscriptContainer";
+import Word from "./Word";
 
 const useStyles = makeStyles((theme) => ({
   transcriptBlockPersonOne: {
@@ -57,21 +59,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Proxima Nova Rg",
     fontWeight: "normal",
   },
-
-  sentenceWord: {
-    "&:hover": {
-      borderRadius: "2px",
-      background: "rgba(26, 153, 246, 0.25)",
-    },
-  },
-
-  hightlightField: {
-    background: "rgba(26, 153, 246, 0.25)",
-    borderRadius: "2px",
-    "&:hover": {
-      background: "rgba(26, 153, 246, 0.25)",
-    },
-  },
 }));
 
 const PersonDialog = ({
@@ -93,48 +80,35 @@ const PersonDialog = ({
   }
 
   const onWordClicked = (wordStartTime) => {
-    console.log("Hello World");
     setSeekTime(wordStartTime);
   };
+
+  const sentence = sentenceWords.map((wordDetails, index) => {
+    return (
+      <Word
+        key={index}
+        wordDetails={wordDetails}
+        onWordClicked={onWordClicked}
+        currentTime={currentTime}
+      />
+    );
+  });
 
   return (
     <div className={transcriptBlock}>
       <div className={startTimeContainer}>{sentenceWords[0].startTime}</div>
       <div className={transcriptSentenceContainer}>
-        <p className={classes.transcriptSentence}>
-          {sentenceWords.map((wordDetails, index) => {
-            const wordStartTime = parseFloat(wordDetails.startTime);
-            let word = (
-              <React.Fragment key={index}>
-                <span
-                  className={classes.sentenceWord}
-                  onClick={() => onWordClicked(wordStartTime)}
-                >
-                  {wordDetails.word}
-                </span>{" "}
-              </React.Fragment>
-            );
-            if (
-              currentTime >= parseFloat(wordDetails.startTime) &&
-              currentTime <= parseFloat(wordDetails.endTime)
-            ) {
-              word = (
-                <React.Fragment key={index}>
-                  <span
-                    className={classes.hightlightField}
-                    onClick={() => onWordClicked(wordStartTime)}
-                  >
-                    {wordDetails.word}
-                  </span>{" "}
-                </React.Fragment>
-              );
-            }
-            return word;
-          })}
-        </p>
+        <p className={classes.transcriptSentence}>{sentence}</p>
       </div>
     </div>
   );
+};
+
+PersonDialog.prototype = {
+  sentenceWords: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dialogSpeaker: PropTypes.number.isRequired,
+  currentTime: PropTypes.number.isRequired,
+  setSeekTime: PropTypes.func.isRequired,
 };
 
 export default PersonDialog;
