@@ -1,6 +1,7 @@
+import { AppBar, makeStyles, Toolbar } from "@material-ui/core";
+import PropTypes from "prop-types";
 import React from "react";
-import { AppBar, Toolbar, makeStyles } from "@material-ui/core";
-import recordingFile from "../../../assets/audios/recording.wav";
+import recordingFile from "../../../data/recording.wav";
 import AudioPlayer from "../../../components/AudioPlayer";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,16 @@ const AudioControlBar = (props) => {
       </Toolbar>
     </AppBar>
   );
+};
+
+AudioControlBar.prototype = {
+  currentTime: PropTypes.number.isRequired,
+  seekTime: PropTypes.number.isRequired,
+  updateCurrentTime: PropTypes.func.isRequired,
+  updateAudioDuration: PropTypes.func.isRequired,
+  setSeekTime: PropTypes.func.isRequired,
+  updateAudioPlayingStatus: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
 };
 
 export default AudioControlBar;
